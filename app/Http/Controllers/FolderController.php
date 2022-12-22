@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Folder;
+use Carbon\Carbon;
 use App\Http\Requests\CreateFolder;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,8 @@ class FolderController extends Controller
          ->route('tasks.index')
          ->with([
             'id' => $folder->id,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
     }
 }
