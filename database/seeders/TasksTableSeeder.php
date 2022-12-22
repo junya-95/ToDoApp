@@ -3,11 +3,11 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use App\Models\Folder;
+use Carbon\Carbon;
+use App\Models\Task;
 
-class FoldersTableSeeder extends Seeder
+class TasksTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,15 +16,12 @@ class FoldersTableSeeder extends Seeder
      */
     public function run()
     {
-        $titles=[
-            'プライベート',
-            '仕事',
-            '旅行',
-        ];
-
-        foreach($titles as $title){
-            Folder::create([
-                'title'=>$title,
+        foreach (range(1, 3) as $num) {
+            Task::create([
+                'folder_id' => 1,
+                'title' => "サンプルタスク {$num}",
+                'status' => $num,
+                'due_date' => Carbon::now()->addDay($num),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
